@@ -13,6 +13,8 @@ namespace DAL
         /// <summary>
         /// Función que obtiene los detalles de una persona de la base de datos de azure, según su ID
         /// </summary>
+        /// <pre>ninguna</pre>
+        /// <post>Puede devolver null si no se encuentra a la persona</post>
         /// <param name="id">ID de la persona a buscar</param>
         /// <returns>Objeto persona con sus detalles</returns>
         public static clsPersona buscarPersonaPorIdDAL(int id)
