@@ -21,7 +21,7 @@ namespace BL
         /// <returns>Objeto persona con sus detalles</returns>
         public static clsPersona buscarPersonaPorIdBL(int id)
         {
-            return DAL.clsMetodosPersonaDAL.buscarPersonaPorId(id);
+            return DAL.clsMetodosDepartamentoBL.buscarDepartamentoPorId(id);
         }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace BL
         /// <returns>Número de filas afectadas tras el insert</returns>
         public static int insertarPersonaBL(clsPersona persona)
         {
-            return DAL.clsMetodosPersonaDAL.insertarPersona(persona);
+            return DAL.clsMetodosDepartamentoBL.insertarDepartamento(persona);
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace BL
         /// <returns>Número de filas afectadas tras la actualización</returns>
         public static int editarPersonaBL(clsPersona persona)
         {
-            return DAL.clsMetodosPersonaDAL.editarPersona(persona);
+            return DAL.clsMetodosDepartamentoBL.editarDepartamento(persona);
         }
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace BL
         /// <returns>Número de filas afectadas tras el borrado</returns>
         public static int eliminarPersonaBL(int id)
         {
-            return DAL.clsMetodosPersonaDAL.eliminarPersona(id);
+            return DAL.clsMetodosDepartamentoBL.eliminarDepartamento(id);
         }
     }
 }
