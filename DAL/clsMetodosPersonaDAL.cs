@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class clsMetodosDAL
+    public class clsMetodosPersonaDAL
     {
         /// <summary>
         /// Función que obtiene los detalles de una persona de la base de datos de azure, según su ID
@@ -19,7 +19,7 @@ namespace DAL
         /// </summary>
         /// <param name="id">ID de la persona a buscar</param>
         /// <returns>Objeto persona con sus detalles</returns>
-        public static clsPersona buscarPersonaPorIdDAL(int id)
+        public static clsPersona buscarPersonaPorId(int id)
         {
             clsPersona persona = null;
 
@@ -96,7 +96,7 @@ namespace DAL
         /// </summary>
         /// <param name="persona">Objeto persona con los detalles a insertar en la base de datos de azure</param>
         /// <returns>Número de filas afectadas tras el insert</returns>
-        public static int insertarPersonaDAL(clsPersona persona)
+        public static int insertarPersona(clsPersona persona)
         {
             int numeroFilasAfectadas = 0;
 
@@ -143,7 +143,7 @@ namespace DAL
         /// </summary>
         /// <param name="persona">Objeto persona con los nuevos detalles</param>
         /// <returns>Número de filas afectadas tras la actualización</returns>
-        public static int editarPersonaDAL(clsPersona persona)
+        public static int editarPersona(clsPersona persona)
         {
             int numeroFilasAfectadas = 0;
 
@@ -193,7 +193,7 @@ namespace DAL
         /// </summary>
         /// <param name="id">ID de la persona a eliminar</param>
         /// <returns>Número de filas afectadas tras el borrado</returns>
-        public static int eliminarPersonaDAL(int id)
+        public static int eliminarPersona(int id)
         {
             int numeroFilasAfectadas = 0;
 

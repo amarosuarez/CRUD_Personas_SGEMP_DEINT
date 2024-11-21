@@ -3,7 +3,7 @@ using Microsoft.Data.SqlClient;
 
 namespace BL
 {
-    public class clsListadosBL
+    public class clsListadosPersonasBL
     {
         /// <summary>
         /// Esta función estática devuelve un listado de personas de la base de datos de azure.
@@ -15,7 +15,7 @@ namespace BL
         /// <returns>Listado de personas</returns>
         public static List<clsPersona> listadoCompletoPersonasBL()
         {
-            return DAL.clsListadosDAL.listadoCompletoPersonasDAL();
+            return DAL.clsListadosPersonaDAL.listadoCompletoPersonasDAL();
         }
     }
 }

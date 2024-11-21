@@ -3,7 +3,7 @@ using Microsoft.Data.SqlClient;
 
 namespace DAL
 {
-    public class clsListadosDAL
+    public class clsListadosPersonaDAL
     {
         /// <summary>
         /// Esta función estática devuelve un listado de personas de la base de datos de azure.

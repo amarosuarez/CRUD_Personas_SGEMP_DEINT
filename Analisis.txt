@@ -1,0 +1,110 @@
+ENT
+-------------------------------------
+	clsPersona:
+		- id: int {get; set;}
+		- nombre: string {get; set;}
+		- apellidos: string {get; set;}
+		- telefono: string {get; set;}
+		- direccion: string {get; set;}
+		- fechaNacimiento: DateTime {get; set;}
+		- idDepartamento: int {get; set;}
+
+		public clsPersona() {}
+
+		public clsPersona(
+			id: int, nombre: string, apellidos: string,
+			telefono: string, direccion: string, fechaNacimiento: DateTime,
+			idDepartamento: int
+		)
+
+	clsDepartamento:
+		- id: int {get; set;}
+		- nombre: string {get; set;}
+
+		public clsDepartamento() {}
+
+		public clsDepartamento(id: int, nombre: string) {}
+
+DAL
+-------------------------------------
+	clsListadoPersonaDAL:
+		public static List<clsPersona> listadoCompleto() {}
+
+	clsMetodosPersonaDAL:
+		public static clsPersona buscarPersonaPorId(id: int) {}
+
+		public static int insertarPersona(persona: clsPersona) {}
+
+		public static int editarPersona(persona: clsPersona) {}
+
+		public static int eliminarPersona(id: int) {}
+
+	clsListadoDepartamentoDAL:
+		public static List<clsDepartamento> listadoCompleto() {}
+
+	clsMetodosDepartamentoDAL:
+		public static clsDepartamento buscarDepartamentoPorId(id: int) {}
+
+		public static int insertarDepartamento(departamento: clsDepartamento) {}
+
+		public static int editarDepartamento(departamento: clsDepartamento) {}
+
+		public static int eliminarDepartamento(id: int) {}
+
+BL
+-------------------------------------
+	clsListadoPersonaBL:
+		public static List<clsPersona> listadoCompleto() {}
+
+	clsMetodosPersonaBL:
+		public static clsPersona buscarPersonaPorId(id: int) {}
+
+		public static int insertarPersona(persona: clsPersona) {}
+
+		public static int editarPersona(persona: clsPersona) {}
+
+		public static int eliminarPersona(id: int) {}
+
+	clsListadoDepartamentoBL:
+		public static List<clsDepartamento> listadoCompleto() {}
+
+	clsMetodosDepartamentoBL:
+		public static clsDepartamento buscarDepartamentoPorId(id: int) {}
+
+		public static int insertarDepartamento(departamento: clsDepartamento) {}
+
+		public static int editarDepartamento(departamento: clsDepartamento) {}
+
+		public static int eliminarDepartamento(id: int) {}
+
+UI
+------------------------------------
+	ASP:
+		Model:
+			clsPersonaConDepartamento : clsPersona
+				- nombreDepartamento: string
+
+				public clsPersonaConDepartamento(clsPersona) {}
+
+		VM:
+			clsListadoPersonasConDepartamentoVM : clsPersonaConDepartamento
+				- List<clsPersonaConDepartamento> listado
+				- List<clsPersona> listaPersonas
+
+				public clsListadoPersonasConDepartamentoVM() {
+					listaPersonas = clsListadoPersonaBL.listadoCompleto()
+
+					for (clsPersona persona in listaPersonas) {
+						clsPersonaConDepartamento per = new clsPersonaConDepartamento(persona);
+
+						clsDepartamento dep = clsMetodosDepartamentoBL.buscarDepartamentoPorId(per.Id)
+
+						if (dep != null) {
+							per.nombre = dep.Nombre
+						}
+
+						listado.Add(per) 
+					}
+
+				}
+

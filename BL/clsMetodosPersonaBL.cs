@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-    public class clsMetodosBL
+    public class clsMetodosPersonaBL
     {
         /// <summary>
         /// Función que obtiene los detalles de una persona de la base de datos de azure, según su ID
@@ -21,7 +21,7 @@ namespace BL
         /// <returns>Objeto persona con sus detalles</returns>
         public static clsPersona buscarPersonaPorIdBL(int id)
         {
-            return DAL.clsMetodosDAL.buscarPersonaPorIdDAL(id);
+            return DAL.clsMetodosPersonaDAL.buscarPersonaPorId(id);
         }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace BL
         /// <returns>Número de filas afectadas tras el insert</returns>
         public static int insertarPersonaBL(clsPersona persona)
         {
-            return DAL.clsMetodosDAL.insertarPersonaDAL(persona);
+            return DAL.clsMetodosPersonaDAL.insertarPersona(persona);
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace BL
         /// <returns>Número de filas afectadas tras la actualización</returns>
         public static int editarPersonaBL(clsPersona persona)
         {
-            return DAL.clsMetodosDAL.editarPersonaDAL(persona);
+            return DAL.clsMetodosPersonaDAL.editarPersona(persona);
         }
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace BL
         /// <returns>Número de filas afectadas tras el borrado</returns>
         public static int eliminarPersonaBL(int id)
         {
-            return DAL.clsMetodosDAL.eliminarPersonaDAL(id);
+            return DAL.clsMetodosPersonaDAL.eliminarPersona(id);
         }
     }
 }
