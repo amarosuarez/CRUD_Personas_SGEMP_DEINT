@@ -21,7 +21,7 @@ namespace BL
         /// <returns>Objeto persona con sus detalles</returns>
         public static clsPersona buscarPersonaPorIdBL(int id)
         {
-            return DAL.clsMetodosDepartamentoBL.buscarDepartamentoPorId(id);
+            return DAL.clsMetodosPersonaDAL.buscarPersonaPorId(id);
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace BL
         /// <returns>Número de filas afectadas tras la actualización</returns>
         public static int editarPersonaBL(clsPersona persona)
         {
-            return DAL.clsMetodosDepartamentoBL.editarDepartamento(persona);
+            return DAL.clsMetodosPersonaDAL.editarPersona(persona);
         }
 
         /// <summary>
