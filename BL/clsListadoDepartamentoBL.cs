@@ -18,9 +18,9 @@ namespace BL
         /// Post: Puede devolver una lista vacía si no encuentra nada en la base de datos
         /// </summary>
         /// <returns>Lista de departamentos</returns>
-        public static List<clsDepartamento> listadoCompleto()
+        public static List<clsDepartamento> listadoCompletoDepartamentosBL()
         {
-            return clsListadoDepartamentoDAL.listadoCompleto();
+            return clsListadoDepartamentoDAL.listadoCompletoDepartamentosDAL();
         }
 
     }

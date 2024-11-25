@@ -21,7 +21,7 @@ namespace DAL
         /// <returns>Objeto departamento con sus detalles</returns>
         public static clsDepartamento buscarDepartamentoPorId(int id)
         {
-            return clsMetodosDepartamentoDAL.buscarDepartamentoPorId(id);
+            return clsMetodosDepartamentoDAL.buscarDepartamentoPorIdDAL(id);
         }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace DAL
         /// <returns>Número de filas afectadas tras el insert</returns>
         public static int insertarDepartamento(clsPersona departamento)
         {
-            return clsMetodosDepartamentoDAL.insertarDepartamento(departamento);
+            return clsMetodosDepartamentoDAL.insertarDepartamentoDAL(departamento);
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace DAL
         /// <returns>Número de filas afectadas tras la actualización</returns>
         public static int editarDepartamento(clsDepartamento departamento)
         {
-            return clsMetodosDepartamentoDAL.editarDepartamento(departamento);
+            return clsMetodosDepartamentoDAL.editarDepartamentoDAL(departamento);
         }
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace DAL
         /// <returns>Número de filas afectadas tras el borrado</returns>
         public static int eliminarDepartamento(int id)
         {
-            return clsMetodosDepartamentoDAL.eliminarDepartamento(id);
+            return clsMetodosDepartamentoDAL.eliminarDepartamentoDAL(id);
         }
     }
 }

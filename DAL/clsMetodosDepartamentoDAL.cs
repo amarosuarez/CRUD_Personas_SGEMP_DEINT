@@ -19,7 +19,7 @@ namespace DAL
         /// </summary>
         /// <param name="id">ID del departamento a buscar</param>
         /// <returns>Objeto departamento con sus detalles</returns>
-        public static clsDepartamento buscarDepartamentoPorId(int id)
+        public static clsDepartamento buscarDepartamentoPorIdDAL(int id)
         {
             clsDepartamento departamento = null;
 
@@ -70,7 +70,7 @@ namespace DAL
         /// </summary>
         /// <param name="departamento">Objeto departamento con los detalles a insertar en la base de datos de azure</param>
         /// <returns>Número de filas afectadas tras el insert</returns>
-        public static int insertarDepartamento(clsPersona departamento)
+        public static int insertarDepartamentoDAL(clsPersona departamento)
         {
             int numeroFilasAfectadas = 0;
 
@@ -111,7 +111,7 @@ namespace DAL
         /// </summary>
         /// <param name="departamento">Objeto departamento con los nuevos detalles</param>
         /// <returns>Número de filas afectadas tras la actualización</returns>
-        public static int editarDepartamento(clsDepartamento departamento)
+        public static int editarDepartamentoDAL(clsDepartamento departamento)
         {
             int numeroFilasAfectadas = 0;
 
@@ -154,7 +154,7 @@ namespace DAL
         /// </summary>
         /// <param name="id">ID del departamento a eliminar</param>
         /// <returns>Número de filas afectadas tras el borrado</returns>
-        public static int eliminarDepartamento(int id)
+        public static int eliminarDepartamentoDAL(int id)
         {
             int numeroFilasAfectadas = 0;
 

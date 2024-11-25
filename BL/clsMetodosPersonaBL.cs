@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAL;
 
 namespace BL
 {
@@ -21,7 +22,7 @@ namespace BL
         /// <returns>Objeto persona con sus detalles</returns>
         public static clsPersona buscarPersonaPorIdBL(int id)
         {
-            return DAL.clsMetodosPersonaDAL.buscarPersonaPorId(id);
+            return clsMetodosPersonaDAL.buscarPersonaPorIdDAL(id);
         }
 
         /// <summary>
@@ -35,7 +36,7 @@ namespace BL
         /// <returns>Número de filas afectadas tras el insert</returns>
         public static int insertarPersonaBL(clsPersona persona)
         {
-            return DAL.clsMetodosDepartamentoBL.insertarDepartamento(persona);
+            return clsMetodosPersonaDAL.insertarPersonaDAL(persona);
         }
 
         /// <summary>
@@ -49,7 +50,7 @@ namespace BL
         /// <returns>Número de filas afectadas tras la actualización</returns>
         public static int editarPersonaBL(clsPersona persona)
         {
-            return DAL.clsMetodosPersonaDAL.editarPersona(persona);
+            return clsMetodosPersonaDAL.editarPersonaDAL(persona);
         }
 
         /// <summary>
@@ -63,7 +64,7 @@ namespace BL
         /// <returns>Número de filas afectadas tras el borrado</returns>
         public static int eliminarPersonaBL(int id)
         {
-            return DAL.clsMetodosDepartamentoBL.eliminarDepartamento(id);
+            return clsMetodosPersonaDAL.eliminarPersonaDAL(id);
         }
     }
 }
