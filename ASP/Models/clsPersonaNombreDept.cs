@@ -30,11 +30,7 @@ namespace ASP.Models
             this.IdDepartamento = persona.IdDepartamento;
 
             string dep = listaDepartamentos.First(dept => dept.Id == persona.IdDepartamento).Nombre;
-            
-            if (dep != null)
-            {
-                this.nombreDept = dep;
-            }
+            nombreDept = dep;
         }
 
         public clsPersonaNombreDept(int idPersona)

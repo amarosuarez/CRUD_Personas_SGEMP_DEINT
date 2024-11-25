@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="MAUI.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:MAUI"
+    Shell.FlyoutBehavior="Disabled"
+    Title="MAUI">
+
+    <ShellContent Title="Listado Personas" ContentTemplate="{DataTemplate MAUI.Views.ListadoPersonas}" />
+    <ShellContent Title="Editar Persona" Route="editarPersona" ContentTemplate="{DataTemplate MAUI.Views.EditarPersona}" />
+
+
+</Shell>
