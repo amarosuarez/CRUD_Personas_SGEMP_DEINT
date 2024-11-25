@@ -59,58 +59,97 @@ namespace ASP.Controllers
         // POST: PersonasController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(clsPersona persona)
         {
+            IActionResult result;
+
             try
             {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
+                clsMetodosPersonaBL.insertarPersonaBL(persona);
+                ViewBag.Mensaje = "Persona creada correctamente";
+                result = View();
+            } catch(Exception e)
             {
-                return View();
+                result = View("Error");
             }
+
+            return View();
         }
 
         // GET: PersonasController/Edit/5
         public ActionResult Edit(int id)
         {
+            IActionResult result;
+
+            try
+            {
+                clsPersona persona = clsMetodosPersonaBL.buscarPersonaPorIdBL(id);
+                result = View(persona);
+            }
+            catch (Exception e)
+            {
+                result = View("Error");
+            }
             return View();
         }
 
         // POST: PersonasController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(clsPersona persona)
         {
+            ActionResult result;
             try
             {
-                return RedirectToAction(nameof(Index));
+                clsMetodosPersonaBL.editarPersonaBL(persona);
+                ViewBag.Mensaje = "Persona editada correctamente";
+                result = View(persona);
             }
             catch
             {
-                return View();
+                result = View("Error");
             }
+
+            return result;
         }
 
         // GET: PersonasController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            ActionResult result;
+
+            try
+            {
+                clsPersona persona = clsMetodosPersonaBL.buscarPersonaPorIdBL(id);
+                result = View(persona);
+            }
+            catch (Exception e)
+            {
+                result = View("Error");
+            }
+
+            return result;
         }
 
         // POST: PersonasController/Delete/5
         [HttpPost]
+        [ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult DeletePost(int id)
         {
+            ActionResult result;
+
             try
             {
-                return RedirectToAction(nameof(Index));
+                clsMetodosPersonaBL.eliminarPersonaBL(id);
+                result = View("Eliminada");
             }
-            catch
+            catch (Exception e)
             {
-                return View();
+                result = View("Error");
             }
+
+            return result;
         }
     }
 }

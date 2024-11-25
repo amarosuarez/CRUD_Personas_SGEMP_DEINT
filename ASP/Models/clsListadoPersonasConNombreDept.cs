@@ -6,7 +6,7 @@ namespace ASP.Models
     public class clsListadoPersonasConNombreDept
     {
         #region Atributos
-        private List<clsPersona> personas { get; }
+        private List<clsPersona> personas;
         private List<clsPersonaNombreDept> personasConNombreDept;
         #endregion
 
@@ -14,10 +14,6 @@ namespace ASP.Models
         public List<clsPersonaNombreDept> PersonasConNombreDept
         {
             get { return personasConNombreDept; }
-            set
-            {
-                personasConNombreDept = value;
-            }
         }
         #endregion
 
@@ -26,10 +22,12 @@ namespace ASP.Models
         {
             personas = clsListadosPersonasBL.listadoCompletoPersonasBL();
 
+            List<clsDepartamento> departamentos = clsListadoDepartamentoBL.listadoCompletoDepartamentosBL();
             personasConNombreDept = new List<clsPersonaNombreDept>();
+
             foreach (clsPersona persona in personas)
             {
-                clsPersonaNombreDept personaNombreDept = new clsPersonaNombreDept(persona);
+                clsPersonaNombreDept personaNombreDept = new clsPersonaNombreDept(persona, departamentos);
                 personasConNombreDept.Add(personaNombreDept);
             }
         }

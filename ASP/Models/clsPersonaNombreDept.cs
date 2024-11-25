@@ -14,18 +14,11 @@ namespace ASP.Models
         public string NombreDept
         {
             get { return nombreDept; }
-            set
-            {
-                if (!string.IsNullOrEmpty(value))
-                {
-                    nombreDept = value;
-                }
-            }
         }
         #endregion
 
         #region Constructores
-        public clsPersonaNombreDept(clsPersona persona)
+        public clsPersonaNombreDept(clsPersona persona, List<clsDepartamento> listaDepartamentos)
         {
             this.Id = persona.Id;
             this.Nombre = persona.Nombre;
@@ -36,11 +29,11 @@ namespace ASP.Models
             this.FechaNacimiento = persona.FechaNacimiento;
             this.IdDepartamento = persona.IdDepartamento;
 
-            clsDepartamento dep = clsMetodosDepartamentoBL.buscarDepartamentoPorId(this.IdDepartamento);
+            string dep = listaDepartamentos.First(dept => dept.Id == persona.IdDepartamento).Nombre;
             
             if (dep != null)
             {
-                this.nombreDept = dep.Nombre;
+                this.nombreDept = dep;
             }
         }
 
