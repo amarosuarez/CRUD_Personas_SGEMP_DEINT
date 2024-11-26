@@ -118,7 +118,7 @@ namespace MAUI.ViewModels
             }
             catch (Exception e) {
                 showError = true;
-                error = e.Message;
+                error = "No se ha podido cargar el listado";
                 NotifyPropertyChanged("ShowError");
                 NotifyPropertyChanged("Error");
             }

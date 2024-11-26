@@ -9,31 +9,41 @@
         <vm:clsEditarPersonaVM></vm:clsEditarPersonaVM>
     </ContentPage.BindingContext>
 
-    <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="15">
-            <!-- Campo Nombre -->
-            <Label Text="Nombre" FontSize="18" />
-            <Entry Text="{Binding Persona.Nombre}" Placeholder="Introduce el nombre" />
-
-            <!-- Campo Apellidos -->
-            <Label Text="Apellidos" FontSize="18" />
-            <Entry Text="{Binding Persona.Apellidos}" Placeholder="Introduce los apellidos" />
-
-            <!-- Campo IdDepartamento -->
-            <Label Text="Departamento" FontSize="18" />
-            <Picker 
-                Title="Selecciona un departamento"
-                ItemsSource="{Binding Departamentos}"
-                SelectedItem="{Binding DepartamentoSeleccionado}"
-                ItemDisplayBinding="{Binding Nombre}" />
-
-
-            <!-- Botón Guardar -->
-            <Button 
-                Text="Guardar"
-                Command="{Binding GuardarCommand}"
-                BackgroundColor="#4CAF50"
-                TextColor="White" />
+    <VerticalStackLayout>
+        <VerticalStackLayout IsVisible="{Binding ShowError}">
+            <Label Text="{Binding Error}"></Label>
+            <Button
+                Text="Volver al listado"
+                Command="{Binding VolverCommand}"></Button>
         </VerticalStackLayout>
-    </ScrollView>
+        
+        <ScrollView IsVisible="{Binding ShowContent}">
+            <VerticalStackLayout Padding="20" Spacing="15">
+                <!-- Campo Nombre -->
+                <Label Text="Nombre" FontSize="18" />
+                <Entry Text="{Binding Persona.Nombre}" Placeholder="Introduce el nombre" />
+
+                <!-- Campo Apellidos -->
+                <Label Text="Apellidos" FontSize="18" />
+                <Entry Text="{Binding Persona.Apellidos}" Placeholder="Introduce los apellidos" />
+
+                <!-- Campo IdDepartamento -->
+                <Label Text="Departamento" FontSize="18" />
+                <Picker 
+            Title="Selecciona un departamento"
+            ItemsSource="{Binding Departamentos}"
+            SelectedItem="{Binding DepartamentoSeleccionado}"
+            ItemDisplayBinding="{Binding Nombre}" />
+
+
+                <!-- Botón Guardar -->
+                <Button 
+            Text="Guardar"
+            Command="{Binding GuardarCommand}"
+            BackgroundColor="#4CAF50"
+            TextColor="White" />
+            </VerticalStackLayout>
+        </ScrollView>
+
+    </VerticalStackLayout>
 </ContentPage>

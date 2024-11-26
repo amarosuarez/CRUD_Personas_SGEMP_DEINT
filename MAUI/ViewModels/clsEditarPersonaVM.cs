@@ -23,7 +23,10 @@ namespace MAUI.ViewModels
         private List<clsDepartamento> departamentos;
         private clsDepartamento departamentoSeleccionado;
         private DelegateCommand guardarCommand;
+        private DelegateCommand volverCommand;
         private String error;
+        private bool showError;
+        private bool showContent;
         #endregion
 
         #region Propiedades
@@ -36,8 +39,6 @@ namespace MAUI.ViewModels
                 departamentoSeleccionado = clsMetodosDepartamentoBL.buscarDepartamentoPorId(value.IdDepartamento);
                 NotifyPropertyChanged("Persona");
                 NotifyPropertyChanged("DepartamentoSeleccionado");
-
-               
             }
         }
 
@@ -64,24 +65,45 @@ namespace MAUI.ViewModels
             get { return guardarCommand; }
         }
 
+        public DelegateCommand VolverCommand
+        {
+            get { return volverCommand; }
+        }
+
         public string Error
         {
             get { return error; }
+        }
+
+        public bool ShowError
+        {
+            get { return showError; }
+        }
+
+        public bool ShowContent
+        {
+            get { return !showError; }
         }
         #endregion
 
         #region Constructores
         public clsEditarPersonaVM()
         {
+
+            guardarCommand = new DelegateCommand(guardarCommandExecuted);
+            volverCommand = new DelegateCommand(volverCommandExecuted);
+
             try
             {
                 departamentos = clsListadoDepartamentoBL.listadoCompletoDepartamentosBL();
-
-                guardarCommand = new DelegateCommand(guardarCommandExecuted);
             }
             catch (Exception ex)
             {
-                error = ex.Message;   
+                
+                error = "Ha ocurrido un error";   
+                showError = true;
+                NotifyPropertyChanged("Error");
+                NotifyPropertyChanged("ShowError");
             }
         }
         #endregion
@@ -109,6 +131,18 @@ namespace MAUI.ViewModels
                     await Shell.Current.GoToAsync("///listadoPersonas");
                 }                
             }
+        }
+
+        /// <summary>
+        /// Función que vuelve al listado
+        /// <br></br>
+        /// Pre: Ninguna
+        /// <br></br>
+        /// Post: Ninguna
+        /// </summary>
+        public async void volverCommandExecuted()
+        {
+            await Shell.Current.GoToAsync("///listadoPersonas");
         }
         #endregion
 
