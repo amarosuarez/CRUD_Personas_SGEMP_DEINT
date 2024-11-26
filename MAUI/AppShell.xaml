@@ -5,10 +5,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:MAUI"
     Shell.FlyoutBehavior="Disabled"
+    xmlns:views="clr-namespace:MAUI.Views"
     Title="MAUI">
 
-    <ShellContent Title="Listado Personas" ContentTemplate="{DataTemplate MAUI.Views.ListadoPersonas}" />
-    <ShellContent Title="Editar Persona" Route="editarPersona" ContentTemplate="{DataTemplate MAUI.Views.EditarPersona}" />
+    <ShellContent Title="Listado Personas" Route="listadoPersonas" ContentTemplate="{DataTemplate views:ListadoPersonas}" />
+    <ShellContent Title="Editar Persona" Route="editarPersona" ContentTemplate="{DataTemplate views:EditarPersona}" />
 
 
 </Shell>

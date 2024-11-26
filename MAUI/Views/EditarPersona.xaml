@@ -2,7 +2,12 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MAUI.Views.EditarPersona"
+             xmlns:vm="clr-namespace:MAUI.ViewModels"
              Title="Editar Persona">
+
+    <ContentPage.BindingContext>
+        <vm:clsEditarPersonaVM></vm:clsEditarPersonaVM>
+    </ContentPage.BindingContext>
 
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="15">
@@ -13,6 +18,15 @@
             <!-- Campo Apellidos -->
             <Label Text="Apellidos" FontSize="18" />
             <Entry Text="{Binding Persona.Apellidos}" Placeholder="Introduce los apellidos" />
+
+            <!-- Campo IdDepartamento -->
+            <Label Text="Departamento" FontSize="18" />
+            <Picker 
+                Title="Selecciona un departamento"
+                ItemsSource="{Binding Departamentos}"
+                SelectedItem="{Binding DepartamentoSeleccionado}"
+                ItemDisplayBinding="{Binding Nombre}" />
+
 
             <!-- Botón Guardar -->
             <Button 

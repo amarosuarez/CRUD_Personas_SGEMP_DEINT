@@ -7,9 +7,6 @@ namespace MAUI
         public AppShell()
         {
             InitializeComponent();
-
-            Routing.RegisterRoute("listado-personas", typeof(ListadoPersonas));
-            Routing.RegisterRoute("editar-persona", typeof(EditarPersona));
         }
     }
 }

@@ -3,65 +3,119 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MAUI.Views.ListadoPersonas"
              xmlns:vm="clr-namespace:MAUI.ViewModels"
-             Title="Listado de Personas">
+             Title="Listado de Personas"
+             BackgroundColor="White">
 
     <ContentPage.BindingContext>
         <vm:clsListadoPersonasVM/>
     </ContentPage.BindingContext>
 
-    <Grid BackgroundColor="AliceBlue">
+    <VerticalStackLayout>
+        <VerticalStackLayout IsVisible="{Binding ShowError}">
+            <Label Text="{Binding Error}"></Label>
+        </VerticalStackLayout>
+        <Grid Padding="10" IsVisible="{Binding ShowContent}">
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+            <!-- Definición de Filas -->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <!-- Barra de herramientas -->
+                <RowDefinition Height="*"/>
+                <!-- Listado -->
+                <RowDefinition Height="Auto"/>
+                <!-- Botón inferior -->
+            </Grid.RowDefinitions>
 
-        <HorizontalStackLayout
-            Grid.Row="0"
-            Spacing="10"
-            HorizontalOptions="Start"
-            VerticalOptions="Start">
-            <Button Text="Edit" Command="{Binding EditarCommand}"/>
-            <Button Text="+"/>
-        </HorizontalStackLayout>
+            <!-- Barra de herramientas -->
+            <HorizontalStackLayout
+         Grid.Row="0"
+         Padding="10"
+         Spacing="15"
+         HorizontalOptions="FillAndExpand"
+         VerticalOptions="Start">
 
-        <ScrollView Grid.Row="1" Padding="10">
-            <VerticalStackLayout Spacing="10">
-                <ListView ItemsSource="{Binding ListadoPersonasNombreDept}"
-                          SelectedItem="{Binding PersonaSeleccionada}"
-                          HasUnevenRows="True">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <HorizontalStackLayout Spacing="10">
-                                    <Image Source="{Binding Foto}" WidthRequest="100" HeightRequest="100"/>
-                                    <VerticalStackLayout>
-                                        <Label TextColor="Black" FontSize="Large" FontAttributes="Bold">
-                                            <Label.Text>
-                                                <MultiBinding StringFormat="{}{0} {1}">
-                                                    <Binding Path="Nombre"/>
-                                                    <Binding Path="Apellidos"/>
-                                                </MultiBinding>
-                                            </Label.Text>
-                                        </Label>
-                                        <Label Text="{Binding NombreDept}" FontSize="Small" TextColor="Black"/>
-                                    </VerticalStackLayout>
-                                </HorizontalStackLayout>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </VerticalStackLayout>
-        </ScrollView>
+                <Button Text="Editar"
+                 TextColor="White"
+                 FontAttributes="Bold"
+                 Command="{Binding EditarCommand}"
+                 BackgroundColor="Purple"
+                 VerticalOptions="Center"
+                 WidthRequest="100"
+                 HeightRequest="40"/>
 
-        <HorizontalStackLayout
-            Grid.Row="2"
-            Spacing="10"
-            HorizontalOptions="Center"
-            VerticalOptions="End">
-            <Button Text="-"/>
-        </HorizontalStackLayout>
-    </Grid>
+                <Button Text="Añadir"
+                 TextColor="White"
+                 FontAttributes="Bold"
+                 BackgroundColor="Green"
+                 VerticalOptions="Center"
+                 WidthRequest="100"
+                 HeightRequest="40"/>
+            </HorizontalStackLayout>
 
+            <!-- Listado -->
+            <ScrollView Grid.Row="1" Padding="10">
+                <VerticalStackLayout Spacing="15">
+                    <ListView ItemsSource="{Binding ListadoPersonasNombreDept}"
+                       SelectedItem="{Binding PersonaSeleccionada}"
+                       HasUnevenRows="True"
+                       SeparatorVisibility="None"
+                       Margin="5"
+                       BackgroundColor="#F5F5F5">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Frame Padding="10"
+                                    Margin="5"
+                                    BorderColor="#E0E0E0"
+                                    BackgroundColor="White">
+                                        <HorizontalStackLayout Spacing="10">
+                                            <Image Source="{Binding Foto}" 
+                                            WidthRequest="70" 
+                                            HeightRequest="70"
+                                            Aspect="AspectFill"
+                                            BackgroundColor="#E0E0E0"/>
+                                            <VerticalStackLayout>
+                                                <Label TextColor="#212121"
+                                                FontSize="Medium"
+                                                FontAttributes="Bold">
+                                                    <Label.Text>
+                                                        <MultiBinding StringFormat="{}{0} {1}">
+                                                            <Binding Path="Nombre"/>
+                                                            <Binding Path="Apellidos"/>
+                                                        </MultiBinding>
+                                                    </Label.Text>
+                                                </Label>
+                                                <Label Text="{Binding NombreDept}" 
+                                                FontSize="Small" 
+                                                TextColor="#757575"/>
+                                            </VerticalStackLayout>
+                                        </HorizontalStackLayout>
+                                    </Frame>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </VerticalStackLayout>
+            </ScrollView>
+
+            <!-- Botón inferior -->
+            <HorizontalStackLayout
+         Grid.Row="2"
+         Padding="10"
+         Spacing="20"
+         HorizontalOptions="Center"
+         VerticalOptions="End">
+                <Button Text="Eliminar"
+                 Command="{Binding BorrarCommand}"
+                 FontAttributes="Bold"
+                 BackgroundColor="#B00020"
+                 TextColor="White"
+                 WidthRequest="120"
+                 HeightRequest="40"/>
+            </HorizontalStackLayout>
+        </Grid>
+
+    </VerticalStackLayout>
+
+   
 </ContentPage>

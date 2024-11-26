@@ -8,7 +8,7 @@ namespace MAUI
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new ListadoPersonas());
+            MainPage = new AppShell();
         }
     }
 }
