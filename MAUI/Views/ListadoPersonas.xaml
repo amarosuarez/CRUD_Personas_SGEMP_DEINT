@@ -11,49 +11,49 @@
     </ContentPage.BindingContext>
 
     <!-- Contenedor principal -->
-    <Grid>
-        <!-- Listado y contenido principal -->
-        <ScrollView>
-            <VerticalStackLayout>
-                <!-- Mensaje de error -->
-                <VerticalStackLayout IsVisible="{Binding ShowError}" Margin="10">
-                    <Label Text="{Binding Error}" 
-                           TextColor="Red" 
-                           FontAttributes="Bold" 
-                           HorizontalOptions="Center" />
-                </VerticalStackLayout>
+    <AbsoluteLayout>
 
-                <!-- Listado -->
+        <!-- Mensaje de error, se muestra si ShowError es true -->
+        <VerticalStackLayout IsVisible="{Binding ShowError}"
+                             HorizontalOptions="Center" 
+                             VerticalOptions="CenterAndExpand" 
+                             Spacing="10">
+            <Label Text="{Binding Error}"
+                   TextColor="Red"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center" 
+                   FontSize="Large" />
+        </VerticalStackLayout>
+
+        <!-- Contenido principal (ListView y botones), se muestra si ShowContent es true -->
+        <ScrollView 
+            AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+            AbsoluteLayout.LayoutFlags="All"
+            IsVisible="{Binding ShowContent}">
+            <VerticalStackLayout Spacing="5" Padding="4">
+                <!-- ListView con los elementos -->
                 <ListView ItemsSource="{Binding ListadoPersonasNombreDept}"
-                          SelectedItem="{Binding PersonaSeleccionada}"
-                          HasUnevenRows="True"
-                          SeparatorVisibility="None"
-                          Margin="5"
-                          BackgroundColor="#F5F5F5">
+                          SelectedItem="{Binding PersonaSeleccionada}">
+
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
                                 <Frame Padding="10"
                                        Margin="5"
                                        BorderColor="#E0E0E0"
-                                       BackgroundColor="White">
+                                       BackgroundColor="White"
+                                       InputTransparent="False">
                                     <HorizontalStackLayout Spacing="10">
                                         <Image Source="{Binding Foto}" 
                                                WidthRequest="70" 
                                                HeightRequest="70"
-                                               Aspect="AspectFill"
                                                BackgroundColor="#E0E0E0"/>
                                         <VerticalStackLayout>
-                                            <Label TextColor="#212121"
+                                            <Label Text="{Binding Nombre}"
+                                                   TextColor="#212121"
                                                    FontSize="Medium"
-                                                   FontAttributes="Bold">
-                                                <Label.Text>
-                                                    <MultiBinding StringFormat="{}{0} {1}">
-                                                        <Binding Path="Nombre"/>
-                                                        <Binding Path="Apellidos"/>
-                                                    </MultiBinding>
-                                                </Label.Text>
-                                            </Label>
+                                                   FontAttributes="Bold"/>
                                             <Label Text="{Binding NombreDept}" 
                                                    FontSize="Small" 
                                                    TextColor="#757575"/>
@@ -67,43 +67,43 @@
             </VerticalStackLayout>
         </ScrollView>
 
-        <!-- Floating Action Buttons -->
-        <AbsoluteLayout>
-            <!-- Botón Editar -->
-            <Button Text="✏️"
-                    Command="{Binding EditarCommand}"
-                    BackgroundColor="Purple"
-                    TextColor="White"
-                    FontSize="Medium"
-                    CornerRadius="25"
-                    WidthRequest="50"
-                    HeightRequest="50"
-                    AbsoluteLayout.LayoutBounds="0.85, 0.8, 50, 50"
-                    AbsoluteLayout.LayoutFlags="PositionProportional"/>
+        <!-- Botones superpuestos, se muestran si ShowContent es true -->
+        <Button Text="✏️"
+                Command="{Binding EditarCommand }"
+                BackgroundColor="Purple"
+                TextColor="White"
+                FontSize="Medium"
+                CornerRadius="25"
+                WidthRequest="50"
+                HeightRequest="50"
+                AbsoluteLayout.LayoutBounds="0.99, 0.89, 50, 50"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                IsVisible="{Binding ShowContent}"/>
 
-            <!-- Botón Añadir -->
-            <Button Text="+" 
-                    Command="{Binding InsertarCommand}" 
-                    BackgroundColor="Green"
-                    TextColor="White"
-                    FontSize="Large"
-                    CornerRadius="25"
-                    WidthRequest="50"
-                    HeightRequest="50"
-                    AbsoluteLayout.LayoutBounds="0.85, 0.9, 50, 50"
-                    AbsoluteLayout.LayoutFlags="PositionProportional"/>
+        <Button Text="+" 
+                BackgroundColor="Green"
+                TextColor="White"
+                FontSize="Large"
+                Command="{Binding InsertarCommand}"
+                CornerRadius="25"
+                WidthRequest="50"
+                HeightRequest="50"
+                AbsoluteLayout.LayoutBounds="0.99, 0.99, 50, 50"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                IsVisible="{Binding ShowContent}"/>
 
-            <!-- Botón Eliminar -->
-            <Button Text="🗑️"
-                    Command="{Binding BorrarCommand}"
-                    BackgroundColor="Red"
-                    TextColor="White"
-                    FontSize="Medium"
-                    CornerRadius="25"
-                    WidthRequest="50"
-                    HeightRequest="50"
-                    AbsoluteLayout.LayoutBounds="0.85, 0.7, 50, 50"
-                    AbsoluteLayout.LayoutFlags="PositionProportional"/>
-        </AbsoluteLayout>
-    </Grid>
+        <Button Text="-"
+                BackgroundColor="Red"
+                TextColor="White"
+                FontSize="Medium"
+                CornerRadius="25"
+                WidthRequest="50"
+                HeightRequest="50"
+                Command="{Binding BorrarCommand}"
+                AbsoluteLayout.LayoutBounds="0.99, 0.79, 50, 50"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                IsVisible="{Binding ShowContent}"/>
+
+    </AbsoluteLayout>
+
 </ContentPage>

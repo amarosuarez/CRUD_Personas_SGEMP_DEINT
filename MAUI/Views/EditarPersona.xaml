@@ -28,20 +28,27 @@
                 <Entry Text="{Binding Persona.Apellidos}" Placeholder="Introduce los apellidos" />
 
                 <!-- Campo IdDepartamento -->
-                <Label Text="Departamento" FontSize="18" />
+                <Label Text="{Binding NombreDept, StringFormat='Departamento: {0}'}" FontSize="18" />
                 <Picker 
-            Title="Selecciona un departamento"
-            ItemsSource="{Binding Departamentos}"
-            SelectedItem="{Binding DepartamentoSeleccionado}"
-            ItemDisplayBinding="{Binding Nombre}" />
+                    Title="Selecciona un departamento"
+                    ItemsSource="{Binding Departamentos}"
+                    SelectedItem="{Binding DepartamentoSeleccionado}"
+                    ItemDisplayBinding="{Binding Nombre}" />
 
 
                 <!-- Botón Guardar -->
                 <Button 
-            Text="Guardar"
-            Command="{Binding GuardarCommand}"
-            BackgroundColor="#4CAF50"
-            TextColor="White" />
+                    Text="Guardar"
+                    Command="{Binding GuardarCommand}"
+                    BackgroundColor="#4CAF50"
+                    TextColor="White" />
+
+                <!-- Botón Volver listado -->
+                <Button 
+                    Text="Volver al listado"
+                    Command="{Binding VolverCommand}"
+                    BackgroundColor="Purple"
+                    TextColor="White" />
             </VerticalStackLayout>
         </ScrollView>
 

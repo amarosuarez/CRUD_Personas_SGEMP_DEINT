@@ -81,7 +81,7 @@
                 }
             }
         }
-        public DateTime FechaNacimiento { get; set; }
+        public DateTime FechaNacimiento { get { return fechaNacimiento; } set { fechaNacimiento = value; } }
         public int IdDepartamento
         {
             get { return idDepartamento; }

@@ -11,13 +11,15 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using ViewModels.Utilidades;
+using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Core;
 
 namespace MAUI.ViewModels
 {
     public class clsListadoPersonasVM : INotifyPropertyChanged
     {
         #region Atributos
-        private clsPersonaNombreDept personaSeleccionada;
+        private clsPersonaNombreDept? personaSeleccionada;
         private ObservableCollection<clsPersonaNombreDept> listadoPersonasNombreDept;
         private List<clsPersona> listadoPersonas;
         private DelegateCommand insertarCommand;
@@ -36,7 +38,10 @@ namespace MAUI.ViewModels
             {
                 if (value != null)
                 {
+
                     personaSeleccionada = value;
+           
+
                     NotifyPropertyChanged("PersonaSeleccionada");
                     editarCommand.RaiseCanExecuteChanged();
                     borrarCommand.RaiseCanExecuteChanged();
@@ -206,8 +211,12 @@ namespace MAUI.ViewModels
                     {
                         listadoPersonasNombreDept.Remove(PersonaSeleccionada);
                         NotifyPropertyChanged("ListadoPersonasNombreDept");
-                        await Application.Current.MainPage.DisplayAlert("Eliminado", personaSeleccionada.Nombre + " eliminado", "OK");
-                        
+                        CancellationTokenSource token = new CancellationTokenSource();
+                        var toast = Toast.Make(PersonaSeleccionada.Nombre + " eliminado correctamente", ToastDuration.Short, 14);
+                        personaSeleccionada = null;
+                        editarCommand.RaiseCanExecuteChanged();
+                        borrarCommand.RaiseCanExecuteChanged();
+                        await toast.Show(token.Token);
                     }
                 }
                 catch (Exception ex)

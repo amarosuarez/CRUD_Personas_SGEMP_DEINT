@@ -3,6 +3,7 @@ using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Core;
 using DAL;
 using ENT;
+using MAUI.Models;
 using Microsoft.Identity.Client;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,7 @@ namespace MAUI.ViewModels
         private String error;
         private bool showError;
         private bool showContent;
+        private string nombreDept;
         #endregion
 
         #region Propiedades
@@ -37,6 +39,8 @@ namespace MAUI.ViewModels
             {
                 persona = value;
                 departamentoSeleccionado = clsMetodosDepartamentoBL.buscarDepartamentoPorId(value.IdDepartamento);
+                nombreDept = departamentoSeleccionado.Nombre;
+                NotifyPropertyChanged(nameof(NombreDept));
                 NotifyPropertyChanged("Persona");
                 NotifyPropertyChanged("DepartamentoSeleccionado");
             }
@@ -84,6 +88,11 @@ namespace MAUI.ViewModels
         {
             get { return !showError; }
         }
+
+        public string NombreDept
+        {
+            get { return nombreDept; }
+        }
         #endregion
 
         #region Constructores
@@ -96,6 +105,7 @@ namespace MAUI.ViewModels
             try
             {
                 departamentos = clsListadoDepartamentoBL.listadoCompletoDepartamentosBL();
+                
             }
             catch (Exception ex)
             {
