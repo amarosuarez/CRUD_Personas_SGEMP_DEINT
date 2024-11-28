@@ -1,4 +1,6 @@
 ﻿using BL;
+using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Core;
 using ENT;
 using System;
 using System.Collections.Generic;
@@ -24,6 +26,7 @@ namespace MAUI.ViewModels
         private List<clsDepartamento> departamentos;
         private clsDepartamento departamentoSeleccionado;
         private DelegateCommand insertarCommand;
+        private DelegateCommand volverCommand;
         private bool showError;
         private bool showContent;
         private string error;
@@ -37,7 +40,6 @@ namespace MAUI.ViewModels
                 if (!string.IsNullOrEmpty(value))
                 {
                     nombre = value;
-                    NotifyPropertyChanged(nameof(Nombre));
                     insertarCommand.RaiseCanExecuteChanged();
                 }
             }
@@ -50,7 +52,6 @@ namespace MAUI.ViewModels
                 if (!string.IsNullOrEmpty(value))
                 {
                     apellidos = value;
-                    NotifyPropertyChanged(nameof(Apellidos));
                     insertarCommand.RaiseCanExecuteChanged();
                 }
             }
@@ -63,7 +64,6 @@ namespace MAUI.ViewModels
                 if (!string.IsNullOrEmpty(value))
                 {
                     telefono = value;
-                    NotifyPropertyChanged(nameof(Telefono));
                     insertarCommand.RaiseCanExecuteChanged();
                 }
             }
@@ -77,7 +77,6 @@ namespace MAUI.ViewModels
                 if (!string.IsNullOrEmpty(value))
                 {
                     direccion = value;
-                    NotifyPropertyChanged(nameof(Direccion));
                     insertarCommand.RaiseCanExecuteChanged();
                 }
             }
@@ -91,7 +90,6 @@ namespace MAUI.ViewModels
                 if (!string.IsNullOrEmpty(value))
                 {
                     foto = value;
-                    NotifyPropertyChanged(nameof(Foto));
                     insertarCommand.RaiseCanExecuteChanged();
                 }
             }
@@ -103,7 +101,6 @@ namespace MAUI.ViewModels
             set
             {
                 fechaNac = value;
-                NotifyPropertyChanged(nameof(FechaNac));
                 insertarCommand.RaiseCanExecuteChanged();
             }
         }
@@ -137,6 +134,11 @@ namespace MAUI.ViewModels
             get { return insertarCommand; }
         }
 
+        public DelegateCommand VolverCommand
+        {
+            get { return volverCommand; }
+        }
+
         public bool ShowError
         {
             get { return showError; }
@@ -155,6 +157,7 @@ namespace MAUI.ViewModels
         public clsInsertarPersonaVM() {
             fechaNac = DateTime.Now;
             insertarCommand = new DelegateCommand(insertarCommandExecuted, insertarCommandCanExecute);
+            volverCommand = new DelegateCommand(volverCommandExecuted);
 
             try
             {
@@ -184,6 +187,10 @@ namespace MAUI.ViewModels
             {
                 clsPersona persona = new clsPersona(1, nombre, apellidos, telefono, direccion, foto, fechaNac, departamentoSeleccionado.Id);
                 clsMetodosPersonaBL.insertarPersonaBL(persona);
+                CancellationTokenSource token = new CancellationTokenSource();
+                var toast = Toast.Make("Persona añadida correctamente", ToastDuration.Short, 14);
+                toast.Show(token.Token);
+                Shell.Current.GoToAsync("///listadoPersonas");
             } catch (Exception ex) {
                 showError = true;
                 error = ex.Message;
@@ -212,6 +219,18 @@ namespace MAUI.ViewModels
             }
 
             return canExecute;
+        }
+
+        /// <summary>
+        /// Función que vuelve al listado
+        /// <br></br>
+        /// Pre: Ninguna
+        /// <br></br>
+        /// Post: Ninguna
+        /// </summary>
+        public async void volverCommandExecuted()
+        {
+            await Shell.Current.GoToAsync("///listadoPersonas");
         }
         #endregion
 
