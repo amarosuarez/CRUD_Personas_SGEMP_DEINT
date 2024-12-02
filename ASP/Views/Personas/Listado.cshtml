@@ -58,7 +58,7 @@
                 @Html.DisplayFor(modelItem => item.Direccion)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Foto)
+                <img src="@item.Foto" width="64" height="64" style="border-radius: 50%; border: black 2px solid;" />
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.FechaNacimiento)
