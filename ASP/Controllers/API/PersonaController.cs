@@ -8,7 +8,7 @@ namespace ASP.Controllers.API
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PersonasController : ControllerBase
+    public class PersonaController : ControllerBase
     {
         // GET: api/<PersonasController>
         [HttpGet]

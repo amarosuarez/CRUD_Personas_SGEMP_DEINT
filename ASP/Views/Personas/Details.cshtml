@@ -4,18 +4,12 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>Detalles</h1>
 
 <div>
-    <h4>clsPersonaNombreDept</h4>
+    <h4>@Model.Nombre @Model.Apellidos</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NombreDept)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NombreDept)
-        </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Id)
         </dt>
@@ -59,14 +53,14 @@
             @Html.DisplayFor(model => model.FechaNacimiento)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdDepartamento)
+            @Html.DisplayNameFor(model => model.NombreDept)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdDepartamento)
+            @Html.DisplayFor(model => model.NombreDept)
         </dd>
     </dl>
 </div>
 <div>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    <a asp-action="Listado">Back to List</a>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
+    <a asp-action="Listado">Volver al listado</a>
 </div>

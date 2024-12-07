@@ -135,13 +135,14 @@ namespace ASP.Controllers
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeletePost(int id)
+        public ActionResult DeletePost(int id, String nombre)
         {
             ActionResult result;
 
             try
             {
                 clsMetodosPersonaBL.eliminarPersonaBL(id);
+                ViewBag.Nombre = nombre;
                 result = View("Eliminada");
             }
             catch (Exception e)

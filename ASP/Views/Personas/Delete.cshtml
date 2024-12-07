@@ -4,11 +4,10 @@
     ViewData["Title"] = "Delete";
 }
 
-<h1>Delete</h1>
+<h1>Borrar</h1>
 
-<h3>¿Estás seguro de que deseas eliminarlo?</h3>
+<h3>¿Estás seguro de que deseas eliminar a @Model.Nombre?</h3>
 <div>
-    <h4>clsPersona</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -62,7 +61,8 @@
     </dl>
     
     <form asp-action="Delete">
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <input type="hidden" name="nombre" value="@Model.Nombre" />
+        <input type="submit" value="Borrar" class="btn btn-danger" /> |
         @ViewBag.Mensaje
         <a asp-action="Listado">Volver al listado</a>
     </form>
