@@ -83,7 +83,7 @@ namespace ASP.Controllers
 
             try
             {
-                clsPersona persona = clsMetodosPersonaBL.buscarPersonaPorIdBL(id);
+                clsPersonaNombreDepYListado persona = new clsPersonaNombreDepYListado(id);
                 result = View(persona);
             }
             catch (Exception e)
@@ -96,11 +96,14 @@ namespace ASP.Controllers
         // POST: PersonasController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(clsPersona persona)
+        public ActionResult Edit(clsPersonaNombreDepYListado personaNDL)
         {
             ActionResult result;
             try
             {
+                // No se me ocurría una forma más fácil de convertir un clsPersonaNombreDepYListado a clsPersona
+                // ya que la capa BL solo conoce a clsPersona
+                clsPersona persona = personaNDL.GetPersona();
                 clsMetodosPersonaBL.editarPersonaBL(persona);
                 ViewBag.Mensaje = "Persona editada correctamente";
                 result = View(persona);
