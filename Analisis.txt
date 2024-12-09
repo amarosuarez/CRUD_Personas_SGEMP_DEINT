@@ -27,84 +27,161 @@ ENT
 
 DAL
 -------------------------------------
+	clsConexionDB:
+		public static SqlConnection getConexion() {}
+
 	clsListadoPersonaDAL:
-		public static List<clsPersona> listadoCompleto() {}
+		public static List<clsPersona> listadoCompletoPersonasDAL() {}
 
 	clsMetodosPersonaDAL:
-		public static clsPersona buscarPersonaPorId(id: int) {}
+		public static clsPersona buscarPersonaPorIdDAL(id: int) {}
 
-		public static int insertarPersona(persona: clsPersona) {}
+		public static int insertarPersonaDAL(persona: clsPersona) {}
 
-		public static int editarPersona(persona: clsPersona) {}
+		public static int editarPersonaDAL(persona: clsPersona) {}
 
-		public static int eliminarPersona(id: int) {}
+		public static int eliminarPersonaDAL(id: int) {}
 
 	clsListadoDepartamentoDAL:
-		public static List<clsDepartamento> listadoCompleto() {}
+		public static List<clsDepartamento> listadoCompletoDepartamentosDAL() {}
 
 	clsMetodosDepartamentoDAL:
-		public static clsDepartamento buscarDepartamentoPorId(id: int) {}
+		public static clsDepartamento buscarDepartamentoPorIdDAL(id: int) {}
 
-		public static int insertarDepartamento(departamento: clsDepartamento) {}
+		public static int insertarDepartamentoDAL(departamento: clsDepartamento) {}
 
-		public static int editarDepartamento(departamento: clsDepartamento) {}
+		public static int editarDepartamentoDAL(departamento: clsDepartamento) {}
 
-		public static int eliminarDepartamento(id: int) {}
+		public static int eliminarDepartamentoDAL(id: int) {}
 
 BL
 -------------------------------------
 	clsListadoPersonaBL:
-		public static List<clsPersona> listadoCompleto() {}
+		public static List<clsPersona> listadoCompletoPersonasBL() {}
 
 	clsMetodosPersonaBL:
-		public static clsPersona buscarPersonaPorId(id: int) {}
+		public static clsPersona buscarPersonaPorIdBL(id: int) {}
 
-		public static int insertarPersona(persona: clsPersona) {}
+		public static int insertarPersonaBL(persona: clsPersona) {}
 
-		public static int editarPersona(persona: clsPersona) {}
+		public static int editarPersonaBL(persona: clsPersona) {}
 
-		public static int eliminarPersona(id: int) {}
+		public static int eliminarPersonaBL(id: int) {}
 
 	clsListadoDepartamentoBL:
-		public static List<clsDepartamento> listadoCompleto() {}
+		public static List<clsDepartamento> listadoCompletoDepartamentosBL() {}
 
 	clsMetodosDepartamentoBL:
-		public static clsDepartamento buscarDepartamentoPorId(id: int) {}
+		public static clsDepartamento buscarDepartamentoPorIdBL(id: int) {}
 
-		public static int insertarDepartamento(departamento: clsDepartamento) {}
+		public static int insertarDepartamentoBL(departamento: clsDepartamento) {}
 
-		public static int editarDepartamento(departamento: clsDepartamento) {}
+		public static int editarDepartamentoBL(departamento: clsDepartamento) {}
 
-		public static int eliminarDepartamento(id: int) {}
+		public static int eliminarDepartamentoBL(id: int) {}
 
 UI
 ------------------------------------
 	ASP:
 		Model:
-			clsPersonaConDepartamento : clsPersona
-				- nombreDepartamento: string
+			clsPersonaNombreDept: clsPersona
+				- nombreDept:string {get;}
+				
+				public clsPersonaNombreDept() {}
 
-				public clsPersonaConDepartamento(clsPersona) {}
+				public clsPersonaNombreDept(clsPersona persona, List<clsDepartamento> listaDepartamentos) {}
+
+				public clsPersonaNombreDept(int idPersona) {}
+
+			clsPersonaNombreDepYListado : clsPersonaNomobreDept
+				- departamentos: List<clsDepartamento> {get;}
+				- departamentoSeleccionado: int {get; set;}
+				
+				public clsPersonaNombreDepYListado() {
+				// Carga los departamentos
+				}
+				
+				public clsPersonaNombreDepYListado(int id) : this() {}
+
+				public clsPersona getPersona() {}
+				
+				
 
 		VM:
-			clsListadoPersonasConDepartamentoVM : clsPersonaConDepartamento
-				- List<clsPersonaConDepartamento> listado
-				- List<clsPersona> listaPersonas
+			clsListadoPersonasConNombreDeptVM
+				- personas: List<clsPersona> personas
+				- personasConNombreDept: List<clsPersonaNombreDept> {get;}
 
-				public clsListadoPersonasConDepartamentoVM() {
-					listaPersonas = clsListadoPersonaBL.listadoCompleto()
-
-					for (clsPersona persona in listaPersonas) {
-						clsPersonaConDepartamento per = new clsPersonaConDepartamento(persona);
-
-						clsDepartamento dep = clsMetodosDepartamentoBL.buscarDepartamentoPorId(per.Id)
-
-						if (dep != null) {
-							per.nombre = dep.Nombre
-						}
-
-						listado.Add(per) 
-					}
-
+				public clsListadoPersonasConNombreDept() {
+				// Carga el listado de personas y le añade el nombre de departamento	
 				}
 
+	MAUI:
+		VM:
+			clsEditarPersonasVM : INotifyPropertyChanged
+				- persona: clsPersona {get; set;}
+				- departamentos: List<clsDepartamento> {get;}
+				- departamentoSeleccionado: clsDepartamento {get; set;}
+				- guardarCommand: DelegateCommand {get;}
+				- volverCommand: DelegateCommand {get;}
+				- error: String {get;}
+				- showError: bool {get;} 
+				- showContent: bool {get;}
+				- nombreDept: String {get;}
+
+				public clsEditarPersonaVM() {
+				// Carga los departamentos
+				}
+
+				void guardarCommandExecuted() {}
+
+				void volverCommandExecuted() {}
+
+			clsInsertarPersonaVM : INotifyPropertyChanged
+				- nombre: String {get; set;}
+				- apellidos: String {get; set;}
+				- telefono: String {get; set;}
+				- direccion: String {get; set;}
+				- foto : String {get; set;}
+				- fechaNac: DateTime {get; set;}
+				- nombreDept : String {get;}
+				- departamentos: List<clsDepartamento> {get;}
+				- departamentoSeleccionado: clsDepartamento {get; set;}
+				- insertarCommand: DelegateCommand {get;}
+				- volverCommand: DelegateCommand {get;}
+				- showError: bool {get;}
+				- showContent: bool {get;}
+				- error: String {get;}
+
+				public clsInsertarPersonaVM() {}
+				
+				void insertarCommandExecuted() {}
+				
+				bool insertarCommandCanExecute() {}
+
+				void volverCommandExecuted() {}
+
+			clsListadoPersonasVM : INotifyPropertyChanged
+				- personaSeleccionada: clsPersonaNombreDept {get; set;}
+				- listadoPersonasNombreDept: ObservableCollection<clsPersonaNombreDept> {get;}
+				- listadopersonas: List<clsPersona>
+				- insertarCommand: DelegateCommand {get;}
+				- editarCommand: DelegateCommand {get;}
+				- borrarCommand: DelegteCommand {get;}
+				- showError: bool {get;}
+				- showContent: bool {get;}
+				- error: String {get;}
+
+				public clsListadoPersonasVM() {}
+				
+				public void cargarListado() {}
+
+				void insertarCommandExecuted() {}
+
+				void editarCommandExecuted() {}
+
+				bool editarCommandCanExecute() {}
+
+				void borrarCommandExecuted() {}
+
+				bool borrarCommandExecute() {}

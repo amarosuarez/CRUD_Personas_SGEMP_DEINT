@@ -19,7 +19,7 @@ namespace MAUI.ViewModels
     public class clsListadoPersonasVM : INotifyPropertyChanged
     {
         #region Atributos
-        private clsPersonaNombreDept? personaSeleccionada;
+        private clsPersonaNombreDept personaSeleccionada;
         private ObservableCollection<clsPersonaNombreDept> listadoPersonasNombreDept;
         private List<clsPersona> listadoPersonas;
         private DelegateCommand insertarCommand;

@@ -1,9 +1,9 @@
 ﻿using BL;
 using ENT;
 
-namespace ASP.Models
+namespace ASP.Models.VM
 {
-    public class clsListadoPersonasConNombreDept
+    public class clsListadoPersonasConNombreDeptVM
     {
         #region Atributos
         private List<clsPersona> personas;
@@ -18,7 +18,7 @@ namespace ASP.Models
         #endregion
 
         #region Constructores
-        public clsListadoPersonasConNombreDept()
+        public clsListadoPersonasConNombreDeptVM()
         {
             personas = clsListadosPersonasBL.listadoCompletoPersonasBL();
 

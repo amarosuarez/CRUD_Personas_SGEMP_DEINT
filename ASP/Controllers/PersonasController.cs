@@ -1,4 +1,5 @@
 ﻿using ASP.Models;
+using ASP.Models.VM;
 using BL;
 using ENT;
 using Microsoft.AspNetCore.Http;
@@ -21,7 +22,7 @@ namespace ASP.Controllers
 
             try
             {
-                clsListadoPersonasConNombreDept personas = new clsListadoPersonasConNombreDept();
+                clsListadoPersonasConNombreDeptVM personas = new clsListadoPersonasConNombreDeptVM();
                 result = View(personas.PersonasConNombreDept);
                
             } catch (Exception e)

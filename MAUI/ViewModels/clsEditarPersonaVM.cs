@@ -38,7 +38,7 @@ namespace MAUI.ViewModels
             set
             {
                 persona = value;
-                departamentoSeleccionado = clsMetodosDepartamentoBL.buscarDepartamentoPorId(value.IdDepartamento);
+                departamentoSeleccionado = clsMetodosDepartamentoBL.buscarDepartamentoPorIdBL(value.IdDepartamento);
                 nombreDept = departamentoSeleccionado.Nombre;
                 NotifyPropertyChanged(nameof(NombreDept));
                 NotifyPropertyChanged("Persona");

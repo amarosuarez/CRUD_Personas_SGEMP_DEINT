@@ -6,7 +6,7 @@ namespace ASP.Models
 {
     public class clsPersonaNombreDept : clsPersona
     {
-        #region Atriutos
+        #region Atributos
         private string nombreDept;
         #endregion
 
@@ -50,7 +50,7 @@ namespace ASP.Models
                 this.FechaNacimiento = persona.FechaNacimiento;
                 this.IdDepartamento = persona.IdDepartamento;
 
-                clsDepartamento dep = clsMetodosDepartamentoBL.buscarDepartamentoPorId(this.IdDepartamento);
+                clsDepartamento dep = clsMetodosDepartamentoBL.buscarDepartamentoPorIdBL(this.IdDepartamento);
 
                 if (dep != null)
                 {
