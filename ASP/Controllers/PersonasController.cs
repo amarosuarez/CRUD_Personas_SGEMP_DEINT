@@ -132,7 +132,7 @@ namespace ASP.Controllers
 
             try
             {
-                clsPersona persona = clsMetodosPersonaBL.buscarPersonaPorIdBL(id);
+                clsPersonaNombreDept persona = new clsPersonaNombreDept(id);
                 result = View(persona);
             }
             catch (Exception e)

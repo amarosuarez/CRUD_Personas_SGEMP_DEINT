@@ -1,79 +1,45 @@
-﻿@model ENT.clsPersona
+﻿@model clsPersonaNombreDept
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Eliminar Persona";
 }
 
 @if (!string.IsNullOrEmpty(ViewBag.Nombre))
 {
-    <div class="alert alert-success text-center mt-4">
+    <div class="alert alert-success mt-4 text-center">
         <h2>@ViewBag.Nombre eliminado/a</h2>
-        <br />
-        @Html.ActionLink("Volver al listado", "Listado")
+        <div>
+            <a asp-action="Listado" class="btn btn-primary mt-2 w-100">Volver al listado</a>
+        </div>
     </div>
-} else
+}
+else
 {
-    <h1>Borrar</h1>
+    <div class="container mt-5">
+        <div class="card shadow rounded">
+            <div class="card-header text-center bg-light">
+                <h4 class="text-danger">¿Está seguro de eliminar a @Model.Nombre @Model.Apellidos?</h4>
+            </div>
+            <div class="card-body">
 
-<h3>¿Estás seguro de que deseas eliminar a @Model.Nombre?</h3>
-<div>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Id)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Apellidos)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Apellidos)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Telefono)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Telefono)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Direccion)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Direccion)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Foto)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Foto)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FechaNacimiento)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FechaNacimiento)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdDepartamento)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdDepartamento)
-        </dd>
-    </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" name="nombre" value="@Model.Nombre" />
-        <input type="submit" value="Borrar" class="btn btn-danger" /> |
-        @ViewBag.Mensaje
-        <a asp-action="Listado">Volver al listado</a>
-    </form>
-</div>
+                <p><strong>Nombre:</strong> @Model.Nombre</p>
+                <p><strong>Apellidos:</strong> @Model.Apellidos</p>
+                <p><strong>Teléfono:</strong> @Model.Telefono</p>
+                <p><strong>Dirección:</strong> @Model.Direccion</p>
+                <p><strong>Fecha Nacimiento:</strong> @Model.FechaNacimiento</p>
+                <p><strong>Departamento:</strong> @Model.NombreDept</p>
+
+                <form asp-action="Delete" class="mt-4">
+                    <input type="hidden" name="nombre" value="@Model.Nombre @Model.Apellidos" />
+                    <button type="submit" class="btn btn-danger btn-block mt-3 w-100">Eliminar</button>
+                </form>
+
+                <div class="text-center mt-3">
+                    <a asp-action="Listado" class="btn btn-outline-secondary mt-2 w-100">Cancelar</a>
+                </div>
+
+                @ViewBag.Mensaje
+            </div>
+        </div>
+    </div>
 }
