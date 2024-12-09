@@ -8,7 +8,7 @@
 {
     <div class="alert alert-success text-center mt-4">
         <h2>@ViewBag.Mensaje</h2>
-        @Html.ActionLink("Volver al listado", "Listado", null, new { @class = "btn btn-secondary mt-2 d-inline-block" })
+        <a asp-action="Listado" class="btn btn-primary btn-sm">Volver al listado</a>
     </div>
 }
 else
