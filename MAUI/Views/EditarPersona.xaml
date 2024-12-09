@@ -9,48 +9,67 @@
         <vm:clsEditarPersonaVM></vm:clsEditarPersonaVM>
     </ContentPage.BindingContext>
 
-    <VerticalStackLayout>
-        <VerticalStackLayout IsVisible="{Binding ShowError}">
-            <Label Text="{Binding Error}"></Label>
-            <Button
-                Text="Volver al listado"
-                Command="{Binding VolverCommand}"></Button>
-        </VerticalStackLayout>
-        
-        <ScrollView IsVisible="{Binding ShowContent}">
-            <VerticalStackLayout Padding="20" Spacing="15">
-                <!-- Campo Nombre -->
-                <Label Text="Nombre" FontSize="18" />
-                <Entry Text="{Binding Persona.Nombre}" Placeholder="Introduce el nombre" />
-
-                <!-- Campo Apellidos -->
-                <Label Text="Apellidos" FontSize="18" />
-                <Entry Text="{Binding Persona.Apellidos}" Placeholder="Introduce los apellidos" />
-
-                <!-- Campo IdDepartamento -->
-                <Label Text="{Binding NombreDept, StringFormat='Departamento: {0}'}" FontSize="18" />
-                <Picker 
-                    Title="Selecciona un departamento"
-                    ItemsSource="{Binding Departamentos}"
-                    SelectedItem="{Binding DepartamentoSeleccionado}"
-                    ItemDisplayBinding="{Binding Nombre}" />
-
-
-                <!-- Botón Guardar -->
-                <Button 
-                    Text="Guardar"
-                    Command="{Binding GuardarCommand}"
-                    BackgroundColor="#4CAF50"
-                    TextColor="White" />
-
-                <!-- Botón Volver listado -->
-                <Button 
-                    Text="Volver al listado"
-                    Command="{Binding VolverCommand}"
-                    BackgroundColor="Purple"
-                    TextColor="White" />
+    <ScrollView>
+        <VerticalStackLayout>
+            <VerticalStackLayout IsVisible="{Binding ShowError}">
+                <Label Text="{Binding Error}"></Label>
+                <Button
+            Text="Volver al listado"
+            Command="{Binding VolverCommand}"></Button>
             </VerticalStackLayout>
-        </ScrollView>
 
-    </VerticalStackLayout>
+            <ScrollView IsVisible="{Binding ShowContent}">
+                <VerticalStackLayout Padding="20" Spacing="15">
+                    <!-- Campo Nombre -->
+                    <Label Text="Nombre" FontSize="18" />
+                    <Entry Text="{Binding Persona.Nombre}" Placeholder="Introduce el nombre" />
+
+                    <!-- Campo Apellidos -->
+                    <Label Text="Apellidos" FontSize="18" />
+                    <Entry Text="{Binding Persona.Apellidos}" Placeholder="Introduce los apellidos" />
+
+                    <!-- Campo Telefono -->
+                    <Label Text="Telefono" FontSize="18" />
+                    <Entry Placeholder="Introduce tu teléfono" Text="{Binding Persona.Telefono}" />
+
+                    <!-- Campo Direccion -->
+                    <Label Text="Dirección" FontSize="18" />
+                    <Entry Placeholder="Introduce tu dirección" Text="{Binding Persona.Direccion}" />
+
+                    <!-- Campo Foto -->
+                    <Label Text="Foto" FontSize="18" />
+                    <Entry Placeholder="Introduce tu foto" Text="{Binding Persona.Foto}" />
+
+                    <!-- Campo Fecha Nacimiento -->
+                    <Label Text="Telefono" FontSize="18" />
+                    <DatePicker
+                Date="{Binding Persona.FechaNacimiento}" />
+
+                    <!-- Campo IdDepartamento -->
+                    <Label Text="{Binding NombreDept, StringFormat='Departamento: {0}'}" FontSize="18" />
+                    <Picker 
+                Title="Selecciona un departamento"
+                ItemsSource="{Binding Departamentos}"
+                SelectedItem="{Binding DepartamentoSeleccionado}"
+                ItemDisplayBinding="{Binding Nombre}" />
+
+
+                    <!-- Botón Guardar -->
+                    <Button 
+                Text="Guardar"
+                Command="{Binding GuardarCommand}"
+                BackgroundColor="#4CAF50"
+                TextColor="White" />
+
+                    <!-- Botón Volver listado -->
+                    <Button 
+                Text="Volver al listado"
+                Command="{Binding VolverCommand}"
+                BackgroundColor="Purple"
+                TextColor="White" />
+                </VerticalStackLayout>
+            </ScrollView>
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

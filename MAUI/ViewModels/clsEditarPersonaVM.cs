@@ -128,18 +128,27 @@ namespace MAUI.ViewModels
         /// </summary>
         public async void guardarCommandExecuted()
         {
-            if (persona != null)
+            try
             {
-                persona.IdDepartamento = departamentoSeleccionado.Id;
-                int filasAfectadas = clsMetodosPersonaBL.editarPersonaBL(persona);
-                
-                if (filasAfectadas > 0)
+                if (persona != null)
                 {
-                    CancellationTokenSource token = new CancellationTokenSource();                    
-                    var toast = Toast.Make("Persona editada correctamente", ToastDuration.Short, 14);
-                    await toast.Show(token.Token);
-                    await Shell.Current.GoToAsync("///listadoPersonas");
-                }                
+                    persona.IdDepartamento = departamentoSeleccionado.Id;
+                    int filasAfectadas = clsMetodosPersonaBL.editarPersonaBL(persona);
+
+                    if (filasAfectadas > 0)
+                    {
+                        CancellationTokenSource token = new CancellationTokenSource();
+                        var toast = Toast.Make("Persona editada correctamente", ToastDuration.Short, 14);
+                        await toast.Show(token.Token);
+                        await Shell.Current.GoToAsync("///listadoPersonas");
+                    }
+                }
+            } catch (Exception ex)
+            {
+                showError = true;
+                error = ex.Message;
+                NotifyPropertyChanged("ShowError");
+                NotifyPropertyChanged("Error");
             }
         }
 

@@ -43,7 +43,7 @@
                 <!-- Campo Fecha Nacimiento -->
                 <Label Text="Telefono" FontSize="18" />
                 <DatePicker
-               Date="{Binding FechaNac, Mode=TwoWay}" />
+                    Date="{Binding FechaNac}" />
 
                 <!-- Campo IdDepartamento -->
                 <Label Text="Departamento" FontSize="18" />
