@@ -1,4 +1,6 @@
-﻿namespace ENT
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ENT
 {
     public class clsPersona
     {
@@ -48,12 +50,13 @@
                 }
             }
         }
+
         public string Telefono
         {
             get { return telefono; }
             set
             {
-                if (!string.IsNullOrEmpty(value))
+                if (!string.IsNullOrEmpty(value) && value.Length == 9 && value.All(char.IsDigit))
                 {
                     telefono = value;
                 }
@@ -81,7 +84,15 @@
                 }
             }
         }
-        public DateTime FechaNacimiento { get { return fechaNacimiento; } set { fechaNacimiento = value; } }
+        public DateTime FechaNacimiento { 
+            get { return fechaNacimiento; }
+            set { 
+                if (value.Year >= 1800)
+                {
+                    fechaNacimiento = value;
+                }
+            } 
+        }
         public int IdDepartamento
         {
             get { return idDepartamento; }
@@ -115,7 +126,9 @@
                 this.apellidos = apellidos;
             }
 
-            if (!string.IsNullOrEmpty(telefono))
+            // Compruebo que el telefono no sea nulo, que sea 9 de largo y que todo sean números,
+            // No sé como hacer que me muestre un aviso cuando estoy escribiendo el número porque 
+            if (!string.IsNullOrEmpty(telefono) && telefono.Length == 9 && telefono.All(char.IsDigit))
             {
                 this.telefono = telefono;
             }
@@ -130,7 +143,10 @@
                 this.foto = foto;
             }
 
-            this.fechaNacimiento = fechaNacimiento;
+            if (fechaNacimiento.Year >= 1800)
+            {
+                this.fechaNacimiento = fechaNacimiento;
+            }
 
             if (idDepartamento > 0)
             {

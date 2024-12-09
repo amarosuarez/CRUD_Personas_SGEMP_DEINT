@@ -4,7 +4,16 @@
     ViewData["Title"] = "Delete";
 }
 
-<h1>Borrar</h1>
+@if (!string.IsNullOrEmpty(ViewBag.Nombre))
+{
+    <div class="alert alert-success text-center mt-4">
+        <h2>@ViewBag.Nombre eliminado/a</h2>
+        <br />
+        @Html.ActionLink("Volver al listado", "Listado")
+    </div>
+} else
+{
+    <h1>Borrar</h1>
 
 <h3>¿Estás seguro de que deseas eliminar a @Model.Nombre?</h3>
 <div>
@@ -67,3 +76,4 @@
         <a asp-action="Listado">Volver al listado</a>
     </form>
 </div>
+}

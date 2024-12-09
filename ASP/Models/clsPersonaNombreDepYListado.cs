@@ -27,11 +27,14 @@ namespace ASP.Models
         #endregion
 
         #region Constructores
-
-        public clsPersonaNombreDepYListado(int id) : base(id)
+        public clsPersonaNombreDepYListado()
         {
-            
             departamentos = clsListadoDepartamentoBL.listadoCompletoDepartamentosBL();
+        }
+
+        public clsPersonaNombreDepYListado(int id) : this()
+        {
+            // Buscamos a la persona por su id y colocamos los datos
             clsPersona persona = clsMetodosPersonaBL.buscarPersonaPorIdBL(id);
             this.Id = persona.Id;
             this.Nombre = persona.Nombre;
@@ -43,11 +46,18 @@ namespace ASP.Models
             this.IdDepartamento = persona.IdDepartamento;
 
             departamentoSeleccionado = persona.IdDepartamento;
-
         }
         #endregion
 
         #region Métodos
+        /// <summary>
+        /// Devuelve un objeto persona con los datos actualizados
+        /// <br></br>
+        /// Pre: Ninguna
+        /// <br></br>
+        /// Post: Ninguna
+        /// </summary>
+        /// <returns>Persona actualizada</returns>
         public clsPersona GetPersona()
         {
             clsPersona persona = new clsPersona(this.Id, this.Nombre, this.Apellidos, this.Telefono, this.Direccion, this.Foto, this.FechaNacimiento, departamentoSeleccionado);

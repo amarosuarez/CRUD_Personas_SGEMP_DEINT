@@ -49,37 +49,44 @@ namespace ASP.Controllers
             }
             return result;
         }
-
         // GET: PersonasController/Create
         public ActionResult Create()
         {
-            return View();
+            clsPersonaNombreDepYListado model = new clsPersonaNombreDepYListado();
+            return View(model);
         }
+
 
         // POST: PersonasController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(clsPersona persona)
+        public ActionResult Create(clsPersonaNombreDepYListado personaNDL)
         {
-            IActionResult result;
+            ActionResult result;
 
             try
             {
+                // Uso un clsPersonaNombreDepYListado para que al momento de poner el departamento, sea un desplegable y
+                // no tener que poner el id.
+                // No se me ocurría una forma más fácil de convertir un clsPersonaNombreDepYListado a clsPersona
+                // ya que la capa BL solo conoce a clsPersona
+                clsPersona persona = personaNDL.GetPersona();
                 clsMetodosPersonaBL.insertarPersonaBL(persona);
-                ViewBag.Mensaje = "Persona creada correctamente";
-                result = View();
+                ViewBag.Mensaje = persona.Nombre + " creado/a correctamente";
+                result = View(personaNDL);
             } catch(Exception e)
             {
+                ViewBag.Mensaje = e;
                 result = View("Error");
             }
 
-            return View();
+            return result;
         }
 
         // GET: PersonasController/Edit/5
         public ActionResult Edit(int id)
         {
-            IActionResult result;
+            ActionResult result;
 
             try
             {
@@ -90,7 +97,7 @@ namespace ASP.Controllers
             {
                 result = View("Error");
             }
-            return View();
+            return result;
         }
 
         // POST: PersonasController/Edit/5
@@ -101,12 +108,14 @@ namespace ASP.Controllers
             ActionResult result;
             try
             {
+                // Uso un clsPersonaNombreDepYListado para que al momento de poner el departamento, sea un desplegable y
+                // no tener que poner el id.
                 // No se me ocurría una forma más fácil de convertir un clsPersonaNombreDepYListado a clsPersona
                 // ya que la capa BL solo conoce a clsPersona
                 clsPersona persona = personaNDL.GetPersona();
                 clsMetodosPersonaBL.editarPersonaBL(persona);
-                ViewBag.Mensaje = "Persona editada correctamente";
-                result = View(persona);
+                ViewBag.Mensaje = persona.Nombre + " editado/a correctamente";
+                result = View(personaNDL);
             }
             catch
             {
@@ -146,7 +155,7 @@ namespace ASP.Controllers
             {
                 clsMetodosPersonaBL.eliminarPersonaBL(id);
                 ViewBag.Nombre = nombre;
-                result = View("Eliminada");
+                result = View();
             }
             catch (Exception e)
             {

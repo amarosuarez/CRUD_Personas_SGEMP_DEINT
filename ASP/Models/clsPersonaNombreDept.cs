@@ -18,6 +18,8 @@ namespace ASP.Models
         #endregion
 
         #region Constructores
+        public clsPersonaNombreDept() { 
+        }
         public clsPersonaNombreDept(clsPersona persona, List<clsDepartamento> listaDepartamentos)
         {
             this.Id = persona.Id;
