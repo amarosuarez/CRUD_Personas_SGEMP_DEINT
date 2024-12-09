@@ -1,72 +1,79 @@
 ﻿@model ASP.Models.clsPersonaNombreDepYListado
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Crear Persona";
 }
 
 @if (!string.IsNullOrEmpty(ViewBag.Mensaje as string))
 {
     <div class="alert alert-success text-center mt-4">
         <h2>@ViewBag.Mensaje</h2>
-        <br />
-        @Html.ActionLink("Volver al listado", "Listado")
+        @Html.ActionLink("Volver al listado", "Listado", null, new { @class = "btn btn-secondary mt-2 d-inline-block" })
     </div>
 }
 else
 {
-    <h1>Crear</h1>
+    <h1 class="text-center mt-4 mb-4 text-dark">Crear Persona</h1>
 
-    <h4>Persona</h4>
-    <hr />
-    <div class="row">
-        <div class="col-md-4">
-            <form asp-action="Create">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="Nombre" class="control-label"></label>
-                    <input asp-for="Nombre" class="form-control" />
-                    <span asp-validation-for="Nombre" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Apellidos" class="control-label"></label>
-                    <input asp-for="Apellidos" class="form-control" />
-                    <span asp-validation-for="Apellidos" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Telefono" class="control-label"></label>
-                    <input asp-for="Telefono" class="form-control" />
-                    <span asp-validation-for="Telefono" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Direccion" class="control-label"></label>
-                    <input asp-for="Direccion" class="form-control" />
-                    <span asp-validation-for="Direccion" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Foto" class="control-label"></label>
-                    <input asp-for="Foto" class="form-control" />
-                    <span asp-validation-for="Foto" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="FechaNacimiento" class="control-label"></label>
-                    <input asp-for="FechaNacimiento" class="form-control" />
-                    <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Departamento</label>
-                    @Html.DropDownListFor(model => model.DepartamentoSeleccionado,
-                             new SelectList(Model.Departamentos, "Id", "Nombre"),
-                             "Selecciona un departamento",
-                             new { @class = "form-control", id = "DepartamentoSeleccionado" })
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-primary" />
-                </div>
-            </form>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6 bg-light p-4 rounded shadow">
+
+                <h4 class="mb-3 text-center">Información Personal</h4>
+
+                <form asp-action="Create">
+                    <div class="form-group">
+                        <label asp-for="Nombre" class="control-label"></label>
+                        <input asp-for="Nombre" class="form-control" placeholder="Nombre" />
+                        <span asp-validation-for="Nombre" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Apellidos" class="control-label"></label>
+                        <input asp-for="Apellidos" class="form-control" placeholder="Apellidos" />
+                        <span asp-validation-for="Apellidos" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Telefono" class="control-label"></label>
+                        <input asp-for="Telefono" class="form-control" placeholder="Teléfono" />
+                        <span asp-validation-for="Telefono" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Direccion" class="control-label"></label>
+                        <input asp-for="Direccion" class="form-control" placeholder="Dirección" />
+                        <span asp-validation-for="Direccion" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Foto" class="control-label"></label>
+                        <input asp-for="Foto" class="form-control" placeholder="URL Foto" />
+                        <span asp-validation-for="Foto" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="FechaNacimiento" class="control-label"></label>
+                        <input asp-for="FechaNacimiento" class="form-control" />
+                        <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Departamento</label>
+                        @Html.DropDownListFor(model => model.DepartamentoSeleccionado,
+                                 new SelectList(Model.Departamentos, "Id", "Nombre"),
+                                 "Selecciona un departamento",
+                                 new { @class = "form-control" })
+                    </div>
+
+                    <div class="d-flex justify-content-between mt-4">
+                        <input type="submit" value="Guardar" class="btn btn-primary btn-lg w-48" />
+                        <a asp-action="Listado" class="btn btn-secondary btn-lg w-48 text-white mt-1">Cancelar</a>
+                    </div>
+
+                </form>
+
+            </div>
         </div>
-    </div>
-
-    <div>
-        <a asp-action="Listado">Volver al listado</a>
     </div>
 }
