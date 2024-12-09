@@ -12,20 +12,15 @@ namespace ASP.Controllers
     {
         public ActionResult Index()
         {
-            return View();
-        }
-
-        // GET: PersonasController
-        public ActionResult Listado()
-        {
             ActionResult result;
 
             try
             {
                 clsListadoPersonasConNombreDeptVM personas = new clsListadoPersonasConNombreDeptVM();
                 result = View(personas.PersonasConNombreDept);
-               
-            } catch (Exception e)
+
+            }
+            catch (Exception e)
             {
                 ViewBag.Mensaje = e.Message;
                 result = View("Error");
@@ -33,7 +28,6 @@ namespace ASP.Controllers
 
             return result;
         }
-
 
         // GET: PersonasController/Details/5
         public ActionResult Details(int id)
