@@ -55,7 +55,7 @@ namespace ASP.Controllers
         // POST: PersonasController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(clsPersonaNombreDepYListado personaNDL)
+        public ActionResult Create(clsPersona personaNDL)
         {
             ActionResult result;
 
@@ -65,9 +65,9 @@ namespace ASP.Controllers
                 // no tener que poner el id.
                 // No se me ocurría una forma más fácil de convertir un clsPersonaNombreDepYListado a clsPersona
                 // ya que la capa BL solo conoce a clsPersona
-                clsPersona persona = personaNDL.GetPersona();
-                clsMetodosPersonaBL.insertarPersonaBL(persona);
-                ViewBag.Mensaje = persona.Nombre + " creado/a correctamente";
+                //clsPersona persona = personaNDL.GetPersona();
+                clsMetodosPersonaBL.insertarPersonaBL(personaNDL);
+                ViewBag.Mensaje = personaNDL.Nombre + " creado/a correctamente";
                 result = View(personaNDL);
             } catch(Exception e)
             {

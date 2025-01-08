@@ -12,16 +12,52 @@ namespace ASP.Controllers.API
     {
         // GET: api/<PersonasController>
         [HttpGet]
-        public List<clsPersona> Get()
+        public IActionResult Get()
         {
-            return clsListadosPersonasBL.listadoCompletoPersonasBL();
+            IActionResult salida;
+            List<clsPersona> listadoCompleto = new List<clsPersona>();
+            try
+            {
+                listadoCompleto = clsListadosPersonasBL.listadoCompletoPersonasBL();
+                if (listadoCompleto.Count() == 0)
+                {
+                    salida = NoContent();
+                }
+                else
+                {
+                    salida = Ok(listadoCompleto);
+                }
+            }
+            catch
+            {
+                salida = BadRequest();
+            }
+            return salida;
         }
 
         // GET api/<PersonasController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public IActionResult Get(int id)
         {
-            return "value";
+            IActionResult salida;
+            clsPersona persona;
+            try
+            {
+                persona = clsMetodosPersonaBL.buscarPersonaPorIdBL(id);
+                if (persona == null)
+                {
+                    salida = NoContent();
+                }
+                else
+                {
+                    salida = Ok(persona);
+                }
+            }
+            catch
+            {
+                salida = BadRequest();
+            }
+            return salida;
         }
 
         // POST api/<PersonasController>
@@ -38,8 +74,29 @@ namespace ASP.Controllers.API
 
         // DELETE api/<PersonasController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
+            IActionResult salida;
+            int numFilasAfectadas = 0;
+
+            try
+            {
+                numFilasAfectadas = clsMetodosPersonaBL.eliminarPersonaBL(id);
+                if (numFilasAfectadas == 0)
+                {
+                    salida = NotFound();
+                }
+                else
+                {
+                    salida = Ok();
+                }
+            }
+            catch (Exception e)
+            {
+                salida = BadRequest();
+            }
+
+            return salida;
         }
     }
 }
