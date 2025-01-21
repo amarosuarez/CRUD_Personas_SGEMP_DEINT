@@ -1,4 +1,5 @@
 ﻿using BL;
+using DAL;
 using ENT;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,17 +9,17 @@ namespace ASP.Controllers.API
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PersonaController : ControllerBase
+    public class DepartamentoController : ControllerBase
     {
-        // GET: api/<PersonasController>
+        // GET: api/<DepartamentoController>
         [HttpGet]
         public IActionResult Get()
         {
             IActionResult salida;
-            List<clsPersona> listadoCompleto = new List<clsPersona>();
+            List<clsDepartamento> listadoCompleto = new List<clsDepartamento>();
             try
             {
-                listadoCompleto = clsListadosPersonasBL.listadoCompletoPersonasBL();
+                listadoCompleto = clsListadoDepartamentoBL.listadoCompletoDepartamentosBL();
                 if (listadoCompleto.Count() == 0)
                 {
                     salida = NoContent();
@@ -35,22 +36,22 @@ namespace ASP.Controllers.API
             return salida;
         }
 
-        // GET api/<PersonasController>/5
+        // GET api/<DepartamentoController>/5
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
             IActionResult salida;
-            clsPersona persona;
+            clsDepartamento departamento;
             try
             {
-                persona = clsMetodosPersonaBL.buscarPersonaPorIdBL(id);
-                if (persona == null)
+                departamento = clsMetodosDepartamentoBL.buscarDepartamentoPorIdBL(id);
+                if (departamento == null)
                 {
                     salida = NoContent();
                 }
                 else
                 {
-                    salida = Ok(persona);
+                    salida = Ok(departamento);
                 }
             }
             catch
@@ -60,16 +61,16 @@ namespace ASP.Controllers.API
             return salida;
         }
 
-        // POST api/<PersonasController>
+        // POST api/<DepartamentoController>
         [HttpPost]
-        public IActionResult Post(clsPersona persona)
+        public IActionResult Post(clsDepartamento departamento)
         {
             IActionResult salida;
             int numFilasAfectadas = 0;
 
             try
             {
-                numFilasAfectadas = clsMetodosPersonaBL.insertarPersonaBL(persona);
+                numFilasAfectadas = clsMetodosDepartamentoBL.insertarDepartamentoBL(departamento);
                 if (numFilasAfectadas == 0)
                 {
                     salida = NotFound();
@@ -87,13 +88,13 @@ namespace ASP.Controllers.API
             return salida;
         }
 
-        // PUT api/<PersonasController>/5
+        // PUT api/<DepartamentoController>/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
         }
 
-        // DELETE api/<PersonasController>/5
+        // DELETE api/<DepartamentoController>/5
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
@@ -102,7 +103,7 @@ namespace ASP.Controllers.API
 
             try
             {
-                numFilasAfectadas = clsMetodosPersonaBL.eliminarPersonaBL(id);
+                numFilasAfectadas = clsMetodosDepartamentoBL.eliminarDepartamentoBL(id);
                 if (numFilasAfectadas == 0)
                 {
                     salida = NotFound();
