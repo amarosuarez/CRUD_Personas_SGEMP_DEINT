@@ -33,7 +33,7 @@ namespace DAL
         /// </summary>
         /// <param name="departamento">Objeto departamento con los detalles a insertar en la base de datos de azure</param>
         /// <returns>Número de filas afectadas tras el insert</returns>
-        public static int insertarDepartamentoBL(clsPersona departamento)
+        public static int insertarDepartamentoBL(clsDepartamento departamento)
         {
             return clsMetodosDepartamentoDAL.insertarDepartamentoDAL(departamento);
         }
